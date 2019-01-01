@@ -1,0 +1,34 @@
+{
+  "name": "mis",
+  "version": "1.0.0",
+  "description": "draw something",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "author": "ray",
+  "license": "ISC",
+  "devDependencies": {
+    "electron-builder": "^20.38.4"
+  },
+  "dependencies": {
+    "bootstrap": "^4.2.1",
+    "jquery": "^3.3.1",
+    "moment": "^2.23.0",
+    "popper.js": "^1.14.6"
+  },
+  "build": {
+    "appId": "mis.draw",
+    "win": {
+      "target": [
+        "portable"
+      ]
+    },
+    "portable": {
+      "artifactName": "draw.exe"
+    }
+  }
+}

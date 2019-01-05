@@ -21,7 +21,7 @@ function indexWindow(){
     }); 
     //Load html into window
     mainWindow.loadURL(url.format({
-        pathname: path.join(__dirname, "Main_display.html"),
+        pathname: path.join(__dirname, "index.html"),
         protocol:'file',
         slashes: true
     })); 

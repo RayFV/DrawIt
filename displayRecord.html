@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="../DrawIt/All.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="../DrawIt/Record.css" />
-    <script src="main.js"></script>
 </head>
 
 <body>
@@ -19,6 +18,13 @@
             <button class="btn btn-dark">單數組</button>
             <button class="btn btn-danger">雙數組</button>
         </div>
+
+        <div class="btn_group d-flex flex-row justify-content-center align-items-center">
+          <button class="btn btn-primary" id="normalDraw">基本抽</button>
+          <button class="btn btn-dark" id="memorableDraw">記憶抽</button>
+      </div>
+
+
         <table class="table">
                 <thead>
                   <tr>
@@ -50,6 +56,8 @@
                 </tbody>
               </table>
     </div>
+
+    <script src="normalDraw.js"></script>
 </body>
 
 </html>

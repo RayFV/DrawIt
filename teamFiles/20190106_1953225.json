@@ -1,0 +1,35 @@
+{
+  "teams": [
+    {
+      "id": 0,
+      "name": "a",
+      "weight": 5,
+      "count": 0
+    },
+    {
+      "id": 1,
+      "name": "b",
+      "weight": 5,
+      "count": 0
+    },
+    {
+      "id": 2,
+      "name": "c",
+      "weight": 5,
+      "count": 0
+    },
+    {
+      "id": 3,
+      "name": "d",
+      "weight": 5,
+      "count": 0
+    },
+    {
+      "id": 4,
+      "name": "e",
+      "weight": 5,
+      "count": 0
+    }
+  ],
+  "record": []
+}

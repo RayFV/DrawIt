@@ -3,7 +3,7 @@ const url = require("url");
 const path = require("path");
 const fs = require("fs");
 
-const {app, BrowserWindow} = electron;
+const {app, BrowserWindow, ipcMain, ipcRenderer} = electron;
 
 let appPath = app.getAppPath();
 //const appPath = process.env.PORTABLE_EXECUTABLE_DIR;
@@ -32,6 +32,47 @@ function indexWindow(){
 
 };
 
+
+// Load another window in runtime
+function loadRecordWindow() {
+    // Load HTML
+    mainWindow.loadURL(url.format({
+        pathname: path.join(__dirname, 'Record.html'),
+        protocol: 'file:',
+        slashes: true
+    }));
+}
+
+function loadMemorableDrawWindow() {
+    // Load HTML
+    mainWindow.loadURL(url.format({
+        pathname: path.join(__dirname, 'MemorableDraw.html'),
+        protocol: 'file:',
+        slashes: true
+    }));
+}
+
+function loadIndexWindow() {
+    // Load HTML
+    mainWindow.loadURL(url.format({
+        pathname: path.join(__dirname, 'index.html'),
+        protocol: 'file:',
+        slashes: true
+    }));
+}
+
+// Catch switch another window request
+ipcMain.on('RecordWindow', (event, arg)=>{
+    loadRecordWindow();
+});
+
+ipcMain.on('memorableDrawWindow', (event, arg)=>{
+    loadMemorableDrawWindow();
+});
+
+ipcMain.on('indexWindow', (event, arg)=>{
+    loadIndexWindow();
+});
 
 if(!fs.existsSync(teamFilePath)){
     fs.mkdir(teamFilePath, (err) => {

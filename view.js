@@ -3,6 +3,7 @@ const fs = require("fs");
 const moment = require("moment");
 const {remote} = require("electron");
 const {app} = remote;
+const {ipcRenderer} = require("electron");
 
 /*
 https://stackoverflow.com/questions/46307797/how-to-get-the-original-path-of-a-portable-electron-app
@@ -16,6 +17,24 @@ const appPath = app.getAppPath();
 const teamFilePath = appPath + '/teamFiles';
 
 refreshFilesList();
+
+$('#record').on('click', () => {
+    ipcRenderer.send('RecordWindow');
+});
+
+$('#memorableDraw').on('click', () => {
+    ipcRenderer.send('memorableDrawWindow');
+});
+
+$('#indexDraw').on('click', () => {
+    ipcRenderer.send('indexWindow');
+});
+
+
+
+$('#Record').on('click', () => {
+    ipcRenderer.send('RecordWindow');
+});
 
 $('#draw').on('click',() => {
     let quantity = $('#quantity').val();

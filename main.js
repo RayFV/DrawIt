@@ -21,7 +21,7 @@ function indexWindow(){
     }); 
     //Load html into window
     mainWindow.loadURL(url.format({
-        pathname: path.join(__dirname, "recordDraw.html"),
+        pathname: path.join(__dirname, "normalDraw.html"),
         protocol:'file',
         slashes: true
     })); 
@@ -32,12 +32,20 @@ function indexWindow(){
 
 };
 
+if(!fs.existsSync(teamFilePath)){
+    fs.mkdir(teamFilePath, (err) => {
+        if (err) throw err;
+    });
+}else{
+    console.log("already exist");
+}
+
 
 // Load another window in runtime
 function loadRecordWindow() {
     // Load HTML
     mainWindow.loadURL(url.format({
-        pathname: path.join(__dirname, 'Record.html'),
+        pathname: path.join(__dirname, 'displayRecord.html'),
         protocol: 'file:',
         slashes: true
     }));
@@ -46,16 +54,16 @@ function loadRecordWindow() {
 function loadMemorableDrawWindow() {
     // Load HTML
     mainWindow.loadURL(url.format({
-        pathname: path.join(__dirname, 'MemorableDraw.html'),
+        pathname: path.join(__dirname, 'memorableDraw.html'),
         protocol: 'file:',
         slashes: true
     }));
 }
 
-function loadIndexWindow() {
+function loadNormalDrawWindow() {
     // Load HTML
     mainWindow.loadURL(url.format({
-        pathname: path.join(__dirname, 'index.html'),
+        pathname: path.join(__dirname, 'normalDraw.html'),
         protocol: 'file:',
         slashes: true
     }));
@@ -70,16 +78,6 @@ ipcMain.on('memorableDrawWindow', (event, arg)=>{
     loadMemorableDrawWindow();
 });
 
-ipcMain.on('indexWindow', (event, arg)=>{
-    loadIndexWindow();
+ipcMain.on('normalDrawWindow', (event, arg)=>{
+    loadNormalDrawWindow();
 });
-
-if(!fs.existsSync(teamFilePath)){
-    fs.mkdir(teamFilePath, (err) => {
-        if (err) throw err;
-    });
-}else{
-    console.log("already exist");
-}
-
-

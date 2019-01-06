@@ -19,8 +19,8 @@ $('#memorableDraw').on('click', () => {
     ipcRenderer.send('memorableDrawWindow');
 });
 
-$('#indexDraw').on('click', () => {
-    ipcRenderer.send('indexWindow');
+$('#normalDraw').on('click', () => {
+    ipcRenderer.send('normalDrawWindow');
 });
 
 

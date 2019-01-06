@@ -21,7 +21,7 @@ function indexWindow(){
     }); 
     //Load html into window
     mainWindow.loadURL(url.format({
-        pathname: path.join(__dirname, "normal.html"),
+        pathname: path.join(__dirname, "recordDraw.html"),
         protocol:'file',
         slashes: true
     })); 

@@ -34,6 +34,10 @@ $('#draw').on('click',() => {
     
  });
 
+ $("#clearTextArea").on('click', ()=>{
+    setMainTextAreaContext(""); 
+});
+
  $('#refreshFilesList').on('click', () =>{
      refreshFilesList();
  });
@@ -115,6 +119,7 @@ function setMainTextAreaContext(newContext){
         removeAll(gonnaDraw, unluckyGuy);
     }
 
+    //記錄一下
     currentRecord.push(new Record(resultArray, generateNewFileNameByTime()));
 
     //儲存Json

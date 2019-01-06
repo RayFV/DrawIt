@@ -16,6 +16,7 @@ const appPath = app.getAppPath();
 const teamFilePath = appPath + '/teamFiles';
 let currentFileName = null;
 let currentTeams = null;
+let currentRecord = null;
 
 refreshFilesList();
 
@@ -71,6 +72,7 @@ function setMainTextAreaContext(newContext){
  }
 
  function getRandomItemsWithRecord(list, quantity){
+    //根據權重決定放入gonnaDraw陣列的數量
     let gonnaDraw = [];
     for(let i = 0; i < list.length;i++){
         let weight = Math.round(list[i].weight);
@@ -78,6 +80,7 @@ function setMainTextAreaContext(newContext){
             gonnaDraw.push(list[i]);
         }
     }
+
     //打亂gonnaDraw
     console.log("length:" + gonnaDraw.length);
     console.log(JSON.stringify(gonnaDraw));
@@ -87,6 +90,7 @@ function setMainTextAreaContext(newContext){
     console.log("length:" + gonnaDraw.length);
     console.log(JSON.stringify(gonnaDraw));
     
+    //抽取
     let resultArray = []
     for(let i = 0; i< quantity; i++){
         let randomIndex = getRandomNumber(0, gonnaDraw.length);
@@ -96,20 +100,23 @@ function setMainTextAreaContext(newContext){
         luckyGuy.count++;
         removeAll(gonnaDraw, luckyGuy);
     }
-    
 
+    //增加沒被抽到的權重
     while(gonnaDraw.length > 0){
         let unluckyGuy = gonnaDraw[0];
         unluckyGuy.weight = Math.round((unluckyGuy.weight + list.length * 0.1) * 100) / 100;
 
         removeAll(gonnaDraw, unluckyGuy);
     }
-    save(teamFilePath + "/" + currentFileName, list);
 
+    currentRecord.push(new Record(resultArray, generateNewFileNameByTime()));
 
+    //儲存Json
+    saveData(teamFilePath + "/" + currentFileName);
+
+    //回傳被抽到的Array
     return resultArray;
  }
-
 
  //min=0, max=100, returns a random integer from 0 to 99
  function getRandomNumber(min, max){
@@ -139,7 +146,8 @@ function setMainTextAreaContext(newContext){
         }
         json = JSON.parse(content);
         currentFileName = fileName;
-        currentTeams = json.content;
+        currentTeams = json.teams;
+        currentRecord = json.record;
         
         let list = [];
         for(let i = 0; i < currentTeams.length;i++){
@@ -151,23 +159,25 @@ function setMainTextAreaContext(newContext){
  }
 
  function createFileWithContext(fileName, contentList){
-    let path = teamFilePath + "/" + fileName + ".json";
+    fileName = fileName + ".json";
+    let path = teamFilePath + "/" + fileName;
     if(!fs.existsSync(path)){
         
         let contentAry = [];
         for(let i = 0; i < contentList.length; i++){
             contentAry.push(new Team(i, contentList[i], contentList.length, 0));
         }
-        let contentDict = {"content": contentAry};
-
-        save(path, contentDict);
+        currentTeams = contentAry;
+        currentRecord = [];
+        saveData(path);
         currentFileName = fileName;
     }else{
         console.log(path+ " already exist");
     }
  }
 
-function save(path, content){
+function saveData(path){
+    let content = {"teams":currentTeams, "record":currentRecord};
     let json = JSON.stringify(content, null, 2);
     fs.writeFile(path, json, function(err){
         if(err){
@@ -186,4 +196,9 @@ function Team(id, name, weight, count){
     this.name = name;
     this.weight = weight;
     this.count = count;
+}
+
+function Record(content, drawTime){
+    this.content = content.join(",");
+    this.drawTime = drawTime;
 }

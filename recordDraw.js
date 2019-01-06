@@ -21,6 +21,12 @@ let currentRecord = null;
 refreshFilesList();
 
 $('#draw').on('click',() => {
+    //cooldown 3 seconds
+    $('#draw').prop('disabled', true);
+    window.setTimeout(function(){
+        $('#draw').prop('disabled', false);
+    }, 3000);
+    
     let quantity = $('#quantity').val();
 
     let result = getRandomItemsWithRecord(currentTeams, quantity);

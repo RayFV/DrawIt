@@ -31,6 +31,10 @@ $('body').on('click', '#files .file', function(event){
     putContextToTextArea(fileName);
 });
 
+$("#clearTextArea").on('click', ()=>{
+    setMainTextAreaContext(""); 
+});
+
 function getSplitedTextArea(){
     return mainTextAreaContext().split(/[\s,;]+/);
 }
@@ -81,16 +85,15 @@ function getRandomItems(list, quantity){
             return;
         }
         json = JSON.parse(content);
-    });
-    currentFileName = fileName;
+        currentFileName = fileName;
+        currentTeams = json.teams;
+        currentRecord = json.record;
+        
+        let list = [];
+        for(let i = 0; i < currentTeams.length;i++){
+            list.push(currentTeams[i].name);
+        }
 
-    currentTeams = json.content;
-    console.log(json);
-    let list = [];
-    for(let i = 0; i < currentTeams.length;i++){
-        list.push(currentTeams[i].name);
-    }
-
-    setMainTextAreaContext(list);
-     
+        setMainTextAreaContext(list);
+    });    
  }

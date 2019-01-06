@@ -3,32 +3,32 @@
     {
       "id": 0,
       "name": "a",
-      "weight": 1.5,
-      "count": 1
+      "weight": 4.5,
+      "count": 6
     },
     {
       "id": 1,
       "name": "b",
-      "weight": 1,
-      "count": 2
+      "weight": 1.5,
+      "count": 7
     },
     {
       "id": 2,
       "name": "c",
-      "weight": 2,
-      "count": 1
+      "weight": 1,
+      "count": 9
     },
     {
       "id": 3,
       "name": "d",
-      "weight": 1,
-      "count": 2
+      "weight": 4,
+      "count": 7
     },
     {
       "id": 4,
       "name": "e",
-      "weight": 1,
-      "count": 2
+      "weight": 3,
+      "count": 9
     }
   ],
   "record": [
@@ -50,6 +50,126 @@
     {
       "content": "d,b,e",
       "drawTime": "20190106_1540215"
+    },
+    {
+      "content": "c",
+      "drawTime": "20190106_1657551"
+    },
+    {
+      "content": "a",
+      "drawTime": "20190106_1657570"
+    },
+    {
+      "content": "e",
+      "drawTime": "20190106_1657574"
+    },
+    {
+      "content": "b",
+      "drawTime": "20190106_1657578"
+    },
+    {
+      "content": "a",
+      "drawTime": "20190106_1657579"
+    },
+    {
+      "content": "d",
+      "drawTime": "20190106_1657581"
+    },
+    {
+      "content": "c",
+      "drawTime": "20190106_1657582"
+    },
+    {
+      "content": "e",
+      "drawTime": "20190106_1657584"
+    },
+    {
+      "content": "a",
+      "drawTime": "20190106_1657585"
+    },
+    {
+      "content": "b",
+      "drawTime": "20190106_1659042"
+    },
+    {
+      "content": "d",
+      "drawTime": "20190106_1659051"
+    },
+    {
+      "content": "c",
+      "drawTime": "20190106_1659053"
+    },
+    {
+      "content": "c",
+      "drawTime": "20190106_1659055"
+    },
+    {
+      "content": "e",
+      "drawTime": "20190106_1659057"
+    },
+    {
+      "content": "c",
+      "drawTime": "20190106_1659058"
+    },
+    {
+      "content": "a",
+      "drawTime": "20190106_1659060"
+    },
+    {
+      "content": "d",
+      "drawTime": "20190106_1659179"
+    },
+    {
+      "content": "e",
+      "drawTime": "20190106_1659180"
+    },
+    {
+      "content": "b",
+      "drawTime": "20190106_1659182"
+    },
+    {
+      "content": "c",
+      "drawTime": "20190106_1659184"
+    },
+    {
+      "content": "e",
+      "drawTime": "20190106_1659247"
+    },
+    {
+      "content": "d",
+      "drawTime": "20190106_1659255"
+    },
+    {
+      "content": "a",
+      "drawTime": "20190106_1700190"
+    },
+    {
+      "content": "d",
+      "drawTime": "20190106_1700227"
+    },
+    {
+      "content": "e",
+      "drawTime": "20190106_1700523"
+    },
+    {
+      "content": "e",
+      "drawTime": "20190106_1700532"
+    },
+    {
+      "content": "b",
+      "drawTime": "20190106_1700537"
+    },
+    {
+      "content": "c",
+      "drawTime": "20190106_1700539"
+    },
+    {
+      "content": "b",
+      "drawTime": "20190106_1700541"
+    },
+    {
+      "content": "c",
+      "drawTime": "20190106_1700542"
     }
   ]
 }

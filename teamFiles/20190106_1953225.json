@@ -3,33 +3,42 @@
     {
       "id": 0,
       "name": "a",
-      "weight": 5,
-      "count": 0
+      "weight": 1.5,
+      "count": 1
     },
     {
       "id": 1,
       "name": "b",
-      "weight": 5,
+      "weight": 6,
       "count": 0
     },
     {
       "id": 2,
       "name": "c",
-      "weight": 5,
+      "weight": 6,
       "count": 0
     },
     {
       "id": 3,
       "name": "d",
-      "weight": 5,
+      "weight": 6,
       "count": 0
     },
     {
       "id": 4,
       "name": "e",
-      "weight": 5,
-      "count": 0
+      "weight": 1,
+      "count": 1
     }
   ],
-  "record": []
+  "record": [
+    {
+      "content": "a",
+      "drawTime": "20190106_2127563"
+    },
+    {
+      "content": "e",
+      "drawTime": "20190106_2127595"
+    }
+  ]
 }

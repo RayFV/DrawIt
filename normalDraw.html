@@ -10,6 +10,30 @@
 </head>
 
 <body>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">抽籤系統</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">基本抽籤</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="memorableDraw" href="#">記憶抽籤</a>
+                </li>
+                <li class="nav-item">
+                     <a class="nav-link" id="record" href="#">抽籤紀錄</a>
+                   </li>
+              </ul>
+              <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              </form>
+            </div>
+          </nav>
    <div class="container-fluid d-flex flex-column justify-content-center">
 
       <div class="form-group">
@@ -29,12 +53,12 @@
          <button class="btn btn-primary" id="draw">開使抽籤</button>
          <button class="btn btn-danger" id="clearTextArea">清除</button>
       </div>
-
+    
       <div class="btn_group d-flex flex-row justify-content-center align-items-center">
         <button class="btn btn-dark" id="memorableDraw">記憶抽</button>
         <button class="btn btn-danger" id="record">紀錄</button>
       </div>
-
+    
       <br>
       <div class="result-area d-flex flex-row justify-content-center">
          <span id="result"></span>

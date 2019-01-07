@@ -8,20 +8,20 @@
 
 <body>
     <div class="container">
-            <div>
-                <label>檔案名稱</label>
-                <input type="text" id="fileName" autofocus>
+        <div>
+            <label>檔案名稱</label>
+            <input type="text" id="fileName" autofocus>
+        </div>
+        <div class="form-group">
+            <label for="contentArea">輸入籤的內容</label>
+            <div class="float-right">
+                <label for="autoAmount">1至</label>
+                <input type="number" placeholder="數量" id="autoAmount" min="2" required value="2" style="width: 5em">
+                <button class="btn btn-success btn-sm" id="autoGenerate">自動產生數字</button>
             </div>
-            <div class="form-group">
-                <label for="contentArea">輸入籤的內容</label>
-                <div class="float-right">
-                    <label for="autoAmount">1至</label>
-                    <input type="number" placeholder="數量" id="autoAmount" min="2" required value="2" style="width: 5em">
-                    <button class="btn btn-success btn-sm" id="autoGenerate">自動產生數字</button>
-                </div>
-                <textarea class="form-control" rows="15" id="contentArea"></textarea>
-            </div>
-            <button class="btn btn-primary" type="submit" id="submit">增加</button>
+            <textarea class="form-control" rows="15" id="contentArea"></textarea>
+        </div>
+        <button class="btn btn-primary" type="submit" id="submit">增加</button>
     </div>
 
     <script>
@@ -30,7 +30,7 @@
         const { ipcRenderer } = electron;
 
 
-        $('#submit').on('click', (event)=>{
+        $('#submit').on('click', (event) => {
 
             event.preventDefault();
             const fileName = document.querySelector('#fileName').value;

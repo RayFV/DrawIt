@@ -1,0 +1,130 @@
+{
+  "teams": [
+    {
+      "id": 1,
+      "name": "1",
+      "weight": 27.2,
+      "count": 0
+    },
+    {
+      "id": 2,
+      "name": "2",
+      "weight": 27.2,
+      "count": 0
+    },
+    {
+      "id": 3,
+      "name": "3",
+      "weight": 7.2,
+      "count": 1
+    },
+    {
+      "id": 4,
+      "name": "4",
+      "weight": 4,
+      "count": 1
+    },
+    {
+      "id": 5,
+      "name": "5",
+      "weight": 27.2,
+      "count": 0
+    },
+    {
+      "id": 6,
+      "name": "6",
+      "weight": 4,
+      "count": 1
+    },
+    {
+      "id": 7,
+      "name": "7",
+      "weight": 13.6,
+      "count": 1
+    },
+    {
+      "id": 8,
+      "name": "8",
+      "weight": 4,
+      "count": 2
+    },
+    {
+      "id": 9,
+      "name": "9",
+      "weight": 12,
+      "count": 1
+    },
+    {
+      "id": 10,
+      "name": "10",
+      "weight": 4,
+      "count": 1
+    },
+    {
+      "id": 11,
+      "name": "11",
+      "weight": 5.6,
+      "count": 1
+    },
+    {
+      "id": 12,
+      "name": "12",
+      "weight": 8.8,
+      "count": 1
+    },
+    {
+      "id": 13,
+      "name": "13",
+      "weight": 27.2,
+      "count": 0
+    },
+    {
+      "id": 14,
+      "name": "14",
+      "weight": 27.2,
+      "count": 0
+    },
+    {
+      "id": 15,
+      "name": "15",
+      "weight": 27.2,
+      "count": 0
+    },
+    {
+      "id": 16,
+      "name": "16",
+      "weight": 4,
+      "count": 1
+    }
+  ],
+  "record": [
+    {
+      "content": "7",
+      "drawTime": "2019-01-07_22:22:278"
+    },
+    {
+      "content": "9",
+      "drawTime": "2019-01-07_22:22:322"
+    },
+    {
+      "content": "8",
+      "drawTime": "2019-01-07_22:22:372"
+    },
+    {
+      "content": "12",
+      "drawTime": "2019-01-07_22:22:555"
+    },
+    {
+      "content": "3",
+      "drawTime": "2019-01-07_22:22:591"
+    },
+    {
+      "content": "11",
+      "drawTime": "2019-01-07_22:23:044"
+    },
+    {
+      "content": "6,4,8,10,16",
+      "drawTime": "2019-01-07_22:23:087"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Add Shopping List Item</title>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <form>
+            <div>
+                <label>檔案名稱</label>
+                <input type="text" id="fileName" autofocus>
+            </div>
+            <div class="form-group">
+                <label for="contentArea">輸入籤的內容</label>
+                <textarea class="form-control" rows="15" id="contentArea"></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">增加檔案</button>
+        </form>
+    </div>
+   
+    <script>
+        const electron = require('electron');
+        const {ipcRenderer} = electron;
+
+        const form = document.querySelector('form');
+        form.addEventListener('submit', submitForm);
+
+        function submitForm(event){
+            event.preventDefault();
+            const fileName = document.querySelector('#fileName').value;
+            const content = document.querySelector('#contentArea').value;
+            ipcRenderer.send('fileCreate', fileName, content);
+        }
+    </script>
+     
+</body>
+</html>

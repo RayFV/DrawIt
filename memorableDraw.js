@@ -1,4 +1,8 @@
 const $ = require('jquery');
+require( 'datatables.net-bs4' )();
+require( 'datatables.net-buttons-bs4' )();
+require( 'datatables.net-scroller-bs4' )();
+require( 'datatables.net-select-bs4' )();
 const fs = require("fs");
 const moment = require("moment");
 const {remote} = require("electron");
@@ -15,19 +19,45 @@ const appPath = app.getAppPath();
 //const appPath = process.env.PORTABLE_EXECUTABLE_DIR;
 
 const teamFilePath = appPath + '/teamFiles';
+let table = null;
 let currentFileName = null;
 let currentTeams = null;
 let currentRecord = null;
 
-refreshFilesList();
 
 $('#record').on('click', () => {
     ipcRenderer.send('RecordWindow');
 });
 
+$('#memorableDraw').on('click', () => {
+    ipcRenderer.send('memorableDrawWindow');
+});
+
 $('#normalDraw').on('click', () => {
     ipcRenderer.send('normalDrawWindow');
 });
+
+$('#createNewFile').on('click', ()=>{
+    ipcRenderer.send('createNewFileWindow');
+    /*
+    console.log("create New File clicked");
+    */
+});
+
+ipcRenderer.on('fileCreate', function(e, fileName, content){
+    let list = content.split(/[\s,;]+/);
+    createFileWithContext(fileName, list);
+});
+
+$('#insertNewItem').on('click', () => {
+    ipcRenderer.send('insertItemWindow');
+});
+
+ipcRenderer.on('item:add', function(e, item){
+    insertItem(item);
+    setTableData();
+});
+
 
 $('#draw').on('click',() => {
     //cooldown 3 seconds
@@ -39,13 +69,12 @@ $('#draw').on('click',() => {
     let quantity = $('#quantity').val();
 
     let result = getRandomItemsWithRecord(currentTeams, quantity);
-    $('#result').text(result);
+    $('#result').show();
+    $('#result').text("恭喜：" + result);
+    setTableData();
     
  });
 
- $("#clearTextArea").on('click', ()=>{
-    setMainTextAreaContext(""); 
-});
 
  $('#refreshFilesList').on('click', () =>{
      refreshFilesList();
@@ -55,32 +84,78 @@ $('body').on('click', '#files .file', function(event){
     let fileName = event.target.innerText;
     console.log(fileName);
 
-    putContextToTextArea(fileName);
+    putContextToTable(fileName);
 });
 
-$('#createNewFile').on('click', ()=>{
-    console.log("create New File clicked");
-    let list = getSplitedTextArea();
-    let date = generateNewFileNameByTime();
-    createFileWithContext(date, list);
-});
 
-function generateNewFileNameByTime(){
-    return moment().format("YYYYMMDD_HHmmssS");
+
+function generateTime(){
+    return moment().format("YYYY-MM-DD_HH:mm:ssS");
 }
 
-function getSplitedTextArea(){
-    return mainTextAreaContext().split(/[\s,;]+/);
+
+$('body').on('click', '#teamTable tbody button', function () {
+    var data = table.row( $(this).parents('tr') ).data();
+    console.log("clicked " + data[0]);
+    removeTeamItem(data[0]);
+    setTableData();
+} );
+
+$("#deleteButton").on('click', (e)=>{
+    e.preventDefault();
+
+    let column = table.column(4);
+    console.log(column);
+    // Toggle the visibility
+    if(!column.visible()){
+        $("#deleteButton").text("完成");
+    }else{
+        $("#deleteButton").text("Delete");
+    }
+    column.visible( ! column.visible() );
+})
+
+function removeTeamItem(id){
+    for(let i = 0; i < currentTeams.length ; i++){
+        if(currentTeams[i].id === id){
+            currentTeams.splice(i, 1);
+        }
+    }
+    //儲存Json
+    saveData(teamFilePath + "/" + currentFileName);
 }
 
-function mainTextAreaContext(){
-    return $('#mainTextArea').val().trim();
+function insertItem(name){
+    let newItem = new Team(currentTeams[currentTeams.length-1].id + 1, name, currentTeams.length+1, 0);
+    currentTeams.push(newItem);
+    //儲存Json
+    saveData(teamFilePath + "/" + currentFileName);
 }
 
-function setMainTextAreaContext(newContext){
-    console.log("Context:" + newContext);
-    $('#mainTextArea').val(newContext);
+function setTableData(){   
+    table.clear();
+    for(let i = 0; i < currentTeams.length;i++){
+        let obj = currentTeams[i];
+            table.row.add( [
+            obj.id,
+            obj.name,
+            (Math.floor((obj.weight/getTotalWeight()) * 10000) / 100) + "%",
+            obj.count,
+            "<button type='button' class='btn btn-danger btn-sm'  id='" + obj.id + "'>Delete</button>"
+        ] ).draw();  
+    }
 }
+
+function createTable(){
+    $("#teamTable").dataTable( {
+        "lengthChange": false,
+        "searching": false,
+        "paging": false,
+        "info": false
+    } );
+    table = $("#teamTable").DataTable();
+}
+
 
  function removeAll(ary, value){
      index = ary.indexOf(value);
@@ -88,6 +163,14 @@ function setMainTextAreaContext(newContext){
          ary.splice(index, 1);
          index = ary.indexOf(value);
      }
+ }
+
+ function getTotalWeight(){
+     let total = 0;
+    for(let i = 0; i < currentTeams.length;i++){
+        total += currentTeams[i].weight;
+    }
+    return total;
  }
 
  function getRandomItemsWithRecord(list, quantity){
@@ -129,7 +212,7 @@ function setMainTextAreaContext(newContext){
     }
 
     //記錄一下
-    currentRecord.push(new Record(resultArray, generateNewFileNameByTime()));
+    currentRecord.push(new Record(resultArray, generateTime()));
 
     //儲存Json
     saveData(teamFilePath + "/" + currentFileName);
@@ -147,17 +230,18 @@ function setMainTextAreaContext(newContext){
     $('#files').empty();
     fs.readdir(teamFilePath, function(err, files) {
         console.log(files);
-        for (let i=0; i<files.length; i++) {
+        for (let i=files.length-1; i>=0; i--) {
             let newDiv = document.createElement('li');
             newDiv.setAttribute("class", "file");
             newDiv.innerHTML = files[i];
             $('#files').append(newDiv);
         }
+        $("body #files .file").first().click();
     });
  }
 
 
- function putContextToTextArea(fileName){
+ function putContextToTable(fileName){
     let path = teamFilePath + "/" + fileName;
     fs.readFile(path, function(err, content){
         if(err){
@@ -173,8 +257,7 @@ function setMainTextAreaContext(newContext){
         for(let i = 0; i < currentTeams.length;i++){
             list.push(currentTeams[i].name);
         }
-
-        setMainTextAreaContext(list);
+        setTableData();
     });    
  }
 
@@ -185,7 +268,7 @@ function setMainTextAreaContext(newContext){
         
         let contentAry = [];
         for(let i = 0; i < contentList.length; i++){
-            contentAry.push(new Team(i, contentList[i], contentList.length, 0));
+            contentAry.push(new Team(i+1, contentList[i], contentList.length, 0));
         }
         currentTeams = contentAry;
         currentRecord = [];
@@ -207,6 +290,7 @@ function saveData(path){
         console.log("Update on " + path);
         console.log("json:" + json);
         refreshFilesList();
+        setTableData();
         
     });
 }
@@ -222,3 +306,11 @@ function Record(content, drawTime){
     this.content = content.join(",");
     this.drawTime = drawTime;
 }
+
+
+
+
+refreshFilesList();
+$('#result').hide();
+createTable();
+$("#deleteButton").click();

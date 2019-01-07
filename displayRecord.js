@@ -16,6 +16,7 @@ table.appendChild(tbody);
 let allRecords = [];
 refreshFilesList();
 
+//datatable
 
 $('#record').on('click', () => {
     ipcRenderer.send('RecordWindow');
@@ -36,6 +37,8 @@ $('body').on('click', '#files .file', function(event){
     refreshTable(fileName);
     refreshFuture(fileName);
 });
+
+
 
 function showTable(allRecords){
     $('#recordTable tbody').empty();

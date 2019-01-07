@@ -1,0 +1,47 @@
+{
+  "teams": [
+    {
+      "id": 1,
+      "name": "a",
+      "weight": 7,
+      "count": 0
+    },
+    {
+      "id": 2,
+      "name": "c",
+      "weight": 7,
+      "count": 0
+    },
+    {
+      "id": 3,
+      "name": "d",
+      "weight": 7,
+      "count": 0
+    },
+    {
+      "id": 4,
+      "name": "q",
+      "weight": 7,
+      "count": 0
+    },
+    {
+      "id": 5,
+      "name": "s",
+      "weight": 7,
+      "count": 0
+    },
+    {
+      "id": 6,
+      "name": "d",
+      "weight": 7,
+      "count": 0
+    },
+    {
+      "id": 7,
+      "name": "e",
+      "weight": 7,
+      "count": 0
+    }
+  ],
+  "record": []
+}

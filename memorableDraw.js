@@ -126,7 +126,12 @@ function removeTeamItem(id){
 }
 
 function insertItem(name){
-    let newItem = new Team(currentTeams[currentTeams.length-1].id + 1, name, currentTeams.length+1, 0);
+    let id = 0;
+    if(currentTeams.length > 0){
+        id = currentTeams[currentTeams.length-1].id + 1;
+    }
+    
+    let newItem = new Team(id, name, currentTeams.length+1, 0);
     currentTeams.push(newItem);
     //儲存Json
     saveData(teamFilePath + "/" + currentFileName);
@@ -134,6 +139,9 @@ function insertItem(name){
 
 function setTableData(){   
     table.clear();
+    if(currentTeams.length <= 0){
+        return;
+    }
     for(let i = 0; i < currentTeams.length;i++){
         let obj = currentTeams[i];
             table.row.add( [
@@ -259,7 +267,10 @@ function createTable(){
         currentFileName = fileName;
         currentTeams = json.teams;
         currentRecord = json.record;
-        
+        if(currentTeams.length <= 0){
+            table.clear();
+            return;
+        }
         let list = [];
         for(let i = 0; i < currentTeams.length;i++){
             list.push(currentTeams[i].name);

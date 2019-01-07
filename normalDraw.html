@@ -5,64 +5,73 @@
    <meta charset="UTF-8">
    <title>基本抽籤</title>
    <link rel="stylesheet" href="../DrawIt/CSS/normalDraw.css">
-   <link rel="stylesheet" href="../DrawIt/CSS/All.css"> 
-  <link rel="stylesheet" href="./node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
-  <script href="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script href="./node_modules/jquery/dist/jquery.min.js"></script>
-  <script href="./node_modules/popper.js/dist/popper.min.js"></script>
-  <script href="./node_modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+   <link rel="stylesheet" href="../DrawIt/CSS/All.css">
+   <link rel="stylesheet" href="./node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
+   <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+   <script href="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+   <script href="./node_modules/jquery/dist/jquery.min.js"></script>
+   <script href="./node_modules/popper.js/dist/popper.min.js"></script>
+   <script href="./node_modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
 </head>
 
 <body>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">抽籤系統</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                  <a class="nav-link" id="normalDraw" href="#">基本抽籤</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="memorableDraw" href="#">記憶抽籤</a>
-                </li>
-                <li class="nav-item">
-                     <a class="nav-link" id="record" href="#">抽籤紀錄</a>
-                   </li>
-              </ul>
-            </div>
-          </nav>
+   <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">抽籤系統</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+         <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+               <a class="nav-link" id="normalDraw" href="#">基本抽籤</a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" id="memorableDraw" href="#">記憶抽籤</a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" id="record" href="#">抽籤紀錄</a>
+            </li>
+         </ul>
+      </div>
+   </nav>
 
    <div class="alert alert-success h2" role="alert" id="result"></div>
    <div class="container-fluid d-flex flex-column justify-content-center">
-         <div class="container">
-               <div class="row">
-                  <div class="col-10">
-                        <div class="form-group">
-                           <div class="input_content_area">
-                              <label for="mainTextArea">輸入籤的內容</label>
-                              
-                              <button class="btn btn-danger float-right" id="clearTextArea">清除</button>   
-                              <textarea class="form-control" rows="8" id="mainTextArea"></textarea>
-                           </div>
+      <div class="container">
+         <div class="row">
+            <div class="col-10">
+               <div class="form-group">
+                  <div class="input_content_area">
+                     <div class="row">
+                        <div class="col-4">
+                           <label for="mainTextArea">輸入籤的內容</label>
                         </div>
-                     <label for="quantity">數量</label>
-                     <input type="number" placeholder="數量" id="quantity" min="1" required value="1">
-                     <button class="btn btn-success float-right" id="draw">抽籤</button>
-                  </div>
-                  <div class="col-2">
-                        <button class="btn btn-dark" id="refreshFilesList">更新群組</button>
-                        <ul id="files"></ul>
+                        <div class="col-6">
+                           <label for="autoAmount">1至</label>
+                           <input type="number" placeholder="數量" id="autoAmount" min="2" required value="2" style="width: 5em">
+                           <button class="btn btn-success  btn-sm" id="autoGenerate">自動產生數字</button>
+                        </div>
+                        <div class="col-2">
+                           <button class="btn btn-danger float-right" id="clearTextArea">清除</button>
+                        </div>
+                        <textarea class="form-control" rows="8" id="mainTextArea"></textarea>
+                     </div>
                   </div>
                </div>
+               <label for="quantity">抽取數量：</label>
+               <input type="number" placeholder="數量" id="quantity" min="1" required value="1">
+               <button class="btn btn-success float-right" id="draw">抽籤</button>
+            </div>
+            <div class="col-2">
+               <button class="btn btn-dark" id="refreshFilesList">更新群組</button>
+               <ul id="files"></ul>
+            </div>
+         </div>
+      </div>
 
-
-   </div>
-
-   <script src="normalDraw.js"></script>
+      <script src="normalDraw.js"></script>
 </body>
 
 </html>

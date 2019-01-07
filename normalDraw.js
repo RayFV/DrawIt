@@ -4,8 +4,8 @@ const {remote} = require("electron");
 const {app} = remote;
 const {ipcRenderer} = require("electron");
 
-//const appPath = app.getAppPath();
-const appPath = process.env.PORTABLE_EXECUTABLE_DIR;
+const appPath = app.getAppPath();
+//const appPath = process.env.PORTABLE_EXECUTABLE_DIR;
 
 const teamFilePath = appPath + '/teamFiles';
 
@@ -23,6 +23,16 @@ $('#normalDraw').on('click', () => {
     ipcRenderer.send('normalDrawWindow');
 });
 
+$('#autoGenerate').on('click', ()=>{
+    let autoAmount = $('#autoAmount').val();
+    let list = [];
+
+    for(let i = 1; i <= autoAmount;i++){
+        list.push(i);
+    }
+
+    setMainTextAreaContext(list);
+});
 
 
 $('#Record').on('click', () => {

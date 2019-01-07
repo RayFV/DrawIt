@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>增加組別</title>
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
 </head>
+
 <body>
     <div class="container">
         <form>
@@ -14,20 +16,21 @@
             <button class="btn btn-primary" type="submit">增加</button>
         </form>
     </div>
-   
+
     <script>
         const electron = require('electron');
-        const {ipcRenderer} = electron;
+        const { ipcRenderer } = electron;
 
         const form = document.querySelector('form');
         form.addEventListener('submit', submitForm);
 
-        function submitForm(event){
+        function submitForm(event) {
             event.preventDefault();
             const itemName = document.querySelector('#item').value;
             ipcRenderer.send('item:add', itemName);
         }
     </script>
-     
+
 </body>
+
 </html>

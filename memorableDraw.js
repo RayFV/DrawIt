@@ -23,7 +23,7 @@ let table = null;
 let currentFileName = null;
 let currentTeams = null;
 let currentRecord = null;
-
+let firstTime = true;
 
 $('#record').on('click', () => {
     ipcRenderer.send('RecordWindow');
@@ -236,7 +236,14 @@ function createTable(){
             newDiv.innerHTML = files[i];
             $('#files').append(newDiv);
         }
-        $("body #files .file").first().click();
+        if(firstTime){
+            console.log("first time");
+            firstTime=false;
+            $("#files .file:first").trigger('click');
+        }else{
+            
+            setTableData();
+        }
     });
  }
 
@@ -290,7 +297,6 @@ function saveData(path){
         console.log("Update on " + path);
         console.log("json:" + json);
         refreshFilesList();
-        setTableData();
         
     });
 }
@@ -307,10 +313,7 @@ function Record(content, drawTime){
     this.drawTime = drawTime;
 }
 
-
-
-
 refreshFilesList();
-$('#result').hide();
 createTable();
+$('#result').hide();
 $("#deleteButton").click();

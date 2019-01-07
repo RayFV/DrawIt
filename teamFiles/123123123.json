@@ -1,0 +1,77 @@
+{
+  "teams": [
+    {
+      "id": 1,
+      "name": "qq",
+      "weight": 12,
+      "count": 0
+    },
+    {
+      "id": 2,
+      "name": "e",
+      "weight": 12,
+      "count": 0
+    },
+    {
+      "id": 3,
+      "name": "e",
+      "weight": 12,
+      "count": 0
+    },
+    {
+      "id": 4,
+      "name": "e",
+      "weight": 12,
+      "count": 0
+    },
+    {
+      "id": 5,
+      "name": "w",
+      "weight": 12,
+      "count": 0
+    },
+    {
+      "id": 6,
+      "name": "w",
+      "weight": 12,
+      "count": 0
+    },
+    {
+      "id": 7,
+      "name": "w",
+      "weight": 12,
+      "count": 0
+    },
+    {
+      "id": 8,
+      "name": "w",
+      "weight": 12,
+      "count": 0
+    },
+    {
+      "id": 9,
+      "name": "w",
+      "weight": 12,
+      "count": 0
+    },
+    {
+      "id": 10,
+      "name": "w",
+      "weight": 12,
+      "count": 0
+    },
+    {
+      "id": 11,
+      "name": "w",
+      "weight": 12,
+      "count": 0
+    },
+    {
+      "id": 12,
+      "name": "",
+      "weight": 12,
+      "count": 0
+    }
+  ],
+  "record": []
+}

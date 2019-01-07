@@ -35,7 +35,8 @@ $('#draw').on('click',() => {
     let list = getSplitedTextArea();
 
     let result = getRandomItems(list, quantity);
-    $('#result').text(result);
+    $('#result').show();
+    $('#result').text("恭喜：" + result);
     
  });
 
@@ -116,3 +117,6 @@ function getRandomItems(list, quantity){
         setMainTextAreaContext(list);
     });    
  }
+
+ 
+$('#result').hide();

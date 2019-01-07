@@ -3,45 +3,64 @@
     {
       "id": 1,
       "name": "a",
-      "weight": 7,
-      "count": 0
+      "weight": 2.8,
+      "count": 1
     },
     {
       "id": 2,
       "name": "c",
-      "weight": 7,
-      "count": 0
+      "weight": 3.6,
+      "count": 1
     },
     {
       "id": 3,
       "name": "d",
-      "weight": 7,
-      "count": 0
+      "weight": 2,
+      "count": 2
     },
     {
       "id": 4,
       "name": "q",
-      "weight": 7,
+      "weight": 9.4,
       "count": 0
     },
     {
       "id": 5,
       "name": "s",
-      "weight": 7,
+      "weight": 9.4,
       "count": 0
     },
     {
       "id": 6,
       "name": "d",
-      "weight": 7,
-      "count": 0
+      "weight": 2,
+      "count": 2
     },
     {
       "id": 7,
       "name": "e",
-      "weight": 7,
-      "count": 0
+      "weight": 2.8,
+      "count": 1
+    },
+    {
+      "id": 8,
+      "name": "qqq",
+      "weight": 2.8,
+      "count": 1
     }
   ],
-  "record": []
+  "record": [
+    {
+      "content": "d,c,d",
+      "drawTime": "2019-01-07_19:38:235"
+    },
+    {
+      "content": "qqq,a,e",
+      "drawTime": "2019-01-07_20:05:093"
+    },
+    {
+      "content": "d,d",
+      "drawTime": "2019-01-07_20:05:139"
+    }
+  ]
 }

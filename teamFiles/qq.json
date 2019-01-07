@@ -1,0 +1,47 @@
+{
+  "teams": [
+    {
+      "id": 1,
+      "name": "asd.as",
+      "weight": 7,
+      "count": 0
+    },
+    {
+      "id": 2,
+      "name": "da",
+      "weight": 7,
+      "count": 0
+    },
+    {
+      "id": 3,
+      "name": "sd",
+      "weight": 7,
+      "count": 0
+    },
+    {
+      "id": 4,
+      "name": "asd",
+      "weight": 7,
+      "count": 0
+    },
+    {
+      "id": 5,
+      "name": "asd",
+      "weight": 7,
+      "count": 0
+    },
+    {
+      "id": 6,
+      "name": "as",
+      "weight": 7,
+      "count": 0
+    },
+    {
+      "id": 7,
+      "name": "d",
+      "weight": 7,
+      "count": 0
+    }
+  ],
+  "record": []
+}

@@ -1,0 +1,17 @@
+{
+  "teams": [
+    {
+      "id": 1,
+      "name": "1",
+      "weight": 2,
+      "count": 0
+    },
+    {
+      "id": 2,
+      "name": "d",
+      "weight": 2,
+      "count": 0
+    }
+  ],
+  "record": []
+}

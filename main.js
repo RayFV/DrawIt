@@ -5,8 +5,8 @@ const fs = require("fs");
 
 const {app, BrowserWindow, ipcMain, ipcRenderer} = electron;
 
-let appPath = app.getAppPath();
-//const appPath = process.env.PORTABLE_EXECUTABLE_DIR;
+//let appPath = app.getAppPath();
+const appPath = process.env.PORTABLE_EXECUTABLE_DIR;
 
 teamFilePath = appPath + '/teamFiles';
 

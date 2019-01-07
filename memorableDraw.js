@@ -15,8 +15,8 @@ https://discuss.atom.io/t/can-electron-be-used-to-do-all-things-that-can-be-done
 https://stackoverflow.com/questions/16091823/get-clicked-element-using-jquery-on-event
 
 */
-const appPath = app.getAppPath();
-//const appPath = process.env.PORTABLE_EXECUTABLE_DIR;
+//const appPath = app.getAppPath();
+const appPath = process.env.PORTABLE_EXECUTABLE_DIR;
 
 const teamFilePath = appPath + '/teamFiles';
 let table = null;

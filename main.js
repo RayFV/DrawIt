@@ -3,7 +3,7 @@ const url = require("url");
 const path = require("path");
 const fs = require("fs");
 
-const {app, BrowserWindow, ipcMain, ipcRenderer} = electron;
+const { app, BrowserWindow, ipcMain, ipcRenderer } = electron;
 
 //let appPath = app.getAppPath();
 const appPath = process.env.PORTABLE_EXECUTABLE_DIR;
@@ -15,30 +15,30 @@ let addWindow;
 let createWindow;
 
 app.on('ready', indexWindow);
-function indexWindow(){
+function indexWindow() {
     //Create
     mainWindow = new BrowserWindow({
         width: 1200,
         height: 720
-    }); 
+    });
     //Load html into window
     mainWindow.loadURL(url.format({
         pathname: path.join(__dirname, "memorableDraw.html"),
-        protocol:'file',
+        protocol: 'file',
         slashes: true
-    })); 
+    }));
     //Quit app when close
-    mainWindow.on('closed', function(){
+    mainWindow.on('closed', function () {
         app.quit();
     });
 
 };
 
-if(!fs.existsSync(teamFilePath)){
+if (!fs.existsSync(teamFilePath)) {
     fs.mkdir(teamFilePath, (err) => {
         if (err) throw err;
     });
-}else{
+} else {
     console.log("already exist");
 }
 
@@ -72,72 +72,72 @@ function loadNormalDrawWindow() {
 }
 
 //Handle create add window
-function createInsertWindow(){
+function createInsertWindow() {
     //Create
     addWindow = new BrowserWindow({
         width: 300,
         height: 200,
-        title:'新增組別'
-    }); 
+        title: '新增組別'
+    });
     //Load html into window
     addWindow.loadURL(url.format({
         pathname: path.join(__dirname, "insertNewItem.html"),
-        protocol:'file',
+        protocol: 'file',
         slashes: true
-    })); 
+    }));
     // Garbage collection handle
-    addWindow.on('closed', function(){
+    addWindow.on('closed', function () {
         addWindow = null;
     })
 }
 
-function createNewFileWindow(){
+function createNewFileWindow() {
     //Create
     createWindow = new BrowserWindow({
         width: 600,
         height: 600,
-        title:'新增檔案'
-    }); 
+        title: '新增檔案'
+    });
     //Load html into window
     createWindow.loadURL(url.format({
         pathname: path.join(__dirname, "createFile.html"),
-        protocol:'file',
+        protocol: 'file',
         slashes: true
-    })); 
+    }));
     // Garbage collection handle
-    createWindow.on('closed', function(){
+    createWindow.on('closed', function () {
         createWindow = null;
     })
 }
 
 // Catch switch another window request
-ipcMain.on('RecordWindow', (event, arg)=>{
+ipcMain.on('RecordWindow', (event, arg) => {
     loadRecordWindow();
 });
 
-ipcMain.on('memorableDrawWindow', (event, arg)=>{
+ipcMain.on('memorableDrawWindow', (event, arg) => {
     loadMemorableDrawWindow();
 });
 
-ipcMain.on('normalDrawWindow', (event, arg)=>{
+ipcMain.on('normalDrawWindow', (event, arg) => {
     loadNormalDrawWindow();
 });
 
-ipcMain.on('createNewFileWindow', (event, arg)=>{
+ipcMain.on('createNewFileWindow', (event, arg) => {
     createNewFileWindow();
 });
 
-ipcMain.on('insertItemWindow', (event, arg)=>{
+ipcMain.on('insertItemWindow', (event, arg) => {
     createInsertWindow();
 });
 
-ipcMain.on('item:add', function(e, item){
+ipcMain.on('item:add', function (e, item) {
     console.log(item);
     mainWindow.webContents.send('item:add', item);
     addWindow.close();
 });
 
-ipcMain.on('fileCreate', function(e, fileName, content){
+ipcMain.on('fileCreate', function (e, fileName, content) {
     mainWindow.webContents.send('fileCreate', fileName, content);
     createWindow.close();
 });

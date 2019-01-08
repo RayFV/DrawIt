@@ -1,13 +1,13 @@
 const $ = require('jquery');
-require( 'datatables.net-bs4' )();
-require( 'datatables.net-buttons-bs4' )();
-require( 'datatables.net-scroller-bs4' )();
-require( 'datatables.net-select-bs4' )();
+require('datatables.net-bs4')();
+require('datatables.net-buttons-bs4')();
+require('datatables.net-scroller-bs4')();
+require('datatables.net-select-bs4')();
 const fs = require("fs");
 const moment = require("moment");
-const {remote} = require("electron");
-const {app} = remote;
-const {ipcRenderer} = require("electron");
+const { remote } = require("electron");
+const { app } = remote;
+const { ipcRenderer } = require("electron");
 
 //const appPath = app.getAppPath();
 const appPath = process.env.PORTABLE_EXECUTABLE_DIR;
@@ -32,71 +32,74 @@ $('#normalDraw').on('click', () => {
     ipcRenderer.send('normalDrawWindow');
 });
 
-$('body').on('click', '#files .file', function(event){
+$('body').on('click', '#files .file', function (event) {
     let fileName = event.target.innerText;
     console.log(fileName);
 
+    $("#files .file").removeClass("active");
+    $(event.target).addClass("active");
     putRecordToTable(fileName);
 });
 
 
 
-function refreshFilesList(){
+function refreshFilesList() {
     $('#files').empty();
-    fs.readdir(teamFilePath, function(err, files) {
+    fs.readdir(teamFilePath, function (err, files) {
         console.log(files);
-        for (let i=files.length-1; i>=0; i--) {
-            let newDiv = document.createElement('li');
-            newDiv.setAttribute("class", "file");
+        for (let i = files.length - 1; i >= 0; i--) {
+            let newDiv = document.createElement('a');
+            newDiv.setAttribute("class", "file list-group-item list-group-item-action");
+            newDiv.setAttribute("href", "#");
             newDiv.innerHTML = files[i];
             $('#files').append(newDiv);
         }
         $("#files .file:first").trigger('click');
     });
- }
+}
 
- function setTableData(){   
+function setTableData() {
     table.clear();
     let count = 1;
-    for(let i = 0; i < currentRecords.length;i++){
+    for (let i = 0; i < currentRecords.length; i++) {
         let obj = currentRecords[i];
-            table.row.add( [
+        table.row.add([
             count++,
             obj.drawTime,
             obj.content
-        ] ).draw();  
+        ]).draw();
     }
 }
 
-function createTable(){
-    $("#recordTable").dataTable( {
+function createTable() {
+    $("#recordTable").dataTable({
         "lengthChange": false,
         "searching": false,
         "paging": false,
         "info": false,
         "scrollY": "300px",
         "scrollCollapse": true,
-    } );
+    });
     table = $("#recordTable").DataTable();
 }
 
-function putRecordToTable(fileName){
+function putRecordToTable(fileName) {
     let path = teamFilePath + "/" + fileName;
-    fs.readFile(path, function(err, content){
-        if(err){
+    fs.readFile(path, function (err, content) {
+        if (err) {
             console.log(err);
             return;
         }
         json = JSON.parse(content);
         currentFileName = fileName;
         currentRecords = json.record;
-        
+
         setTableData();
-    });    
- }
+    });
+}
 
 
-function Record(content, drawTime){
+function Record(content, drawTime) {
     this.content = content.join(",");
     this.drawTime = drawTime;
 }
